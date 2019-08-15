@@ -45,6 +45,12 @@ COPY --chown=www:www . /var/www
 # Change current user to www
 USER www
 
+# Create the .env from the .env.example
+COPY .env.example .env
+
+# Run composer install
+RUN composer install
+
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
