@@ -32,15 +32,6 @@ RUN docker-php-ext-install gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Create the .env from the .env.example
-COPY .env.example .env
-
-# Run composer install
-CMD composer install
-
-#Generate a new app key
-CMD php artisan key:generate
-
 # Add user for laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
